@@ -1,28 +1,32 @@
-# Manufacturing Process Management (MPM) 
-
-MPM can be use to any manufactoring plant/units to mantain their stocks/data even at intermittent levels. Levels are processes invovled to manufacture one unit/Item. It required configurations such as level involved, units (weight,height) etc. as per business needs. Go through below points to setup, configure and understand working.
-
-## Prerequisites
-* Operating system (Linux, Windows)
-* Apache, PHP, Mysql (Or WAMP/LAMP server)
-## Configure Database
-* Login to Mysql and create one database named 'mpm' and Import file (mpm_1052015.sql) to your Database 'mpm'.
-* Add database credentials in protected/config/main.php <br>
-      <I>'connectionString' => 'mysql:host=127.0.0.1;dbname=mpm',<br>
-			'username' => \<db-username\>,<br>
-			'password' => \<db-password\>,<br>
-			</I>
-
-## Test the application
-* Browse the index.php and check accessibilty
-* If page is accesible, try to login into Application (Default Credentials). If login sucessfull, it means Database is configured correctly.
-
-## Nomenclature
-* Items - Raw Materials use at various level in processing to manufactor final product (e.g. Cloth, leather)
-* Article - Final output product (e.g. Shoe)
-* Production Plan - It is the mechanishm to track output progress of articles. This progress is tracked in batches. Batches are created as per quatity of Articles (e.g. Plan to produce 100 pairs of Shoe)
-* Processes - Different level that are involved in manufactoring of one Article (e.g. cutting, molding)
-* Parties - Parties could be any entity from which items(raw) is being purchased, Godowen stock (Article) is being sold or involved in intermittent processing of Articles (e.g. party X- from which we purchase cloth; party Y- do cutting for making shoe; party Z - purchase shoes from us)
-* Issue Items - Transfer Items(raw products) to parties those are involved in intermittent processing of articles and these items are used in processing. (e.g. Give 10 m cloth to party X for cutting as per plan of 100 shoes)
-
-<br> To be continue...
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">制造过程管理（MPM）</font></font></h1><a id="user-content-manufacturing-process-management-mpm" class="anchor" aria-label="永久链接：制造流程管理 (MPM)" href="#manufacturing-process-management-mpm"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MPM 可用于任何制造工厂/单位，即使在间歇性水平下也能维护其库存/数据。级别是制造一个单元/物品所涉及的过程。它需要根据业务需求进行配置，例如涉及的级别、单位（重量、高度）等。请通过以下几点来设置、配置和了解工作原理。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">先决条件</font></font></h2><a id="user-content-prerequisites" class="anchor" aria-label="永久链接：先决条件" href="#prerequisites"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">操作系统（Linux、Windows）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apache、PHP、Mysql（或 WAMP/LAMP 服务器）</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置数据库</font></font></h2><a id="user-content-configure-database" class="anchor" aria-label="永久链接：配置数据库" href="#configure-database"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录 Mysql 并创建一个名为“mpm”的数据库，并将文件（mpm_1052015.sql）导入到数据库“mpm”。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 protected/config/main.php 中添加数据库凭据</font></font><br>
+<i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'connectionString' =&gt; 'mysql:host=127.0.0.1;dbname=mpm', </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+'username' =&gt; &lt;db-username&gt;, </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+'password' =&gt; &lt;db-password &gt;,</font></font><br>
+</i></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">测试应用程序</font></font></h2><a id="user-content-test-the-application" class="anchor" aria-label="永久链接：测试应用程序" href="#test-the-application"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">浏览index.php并检查可访问性</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果页面可访问，请尝试登录应用程序（默认凭据）。如果登录成功，说明数据库配置正确。</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">命名法</font></font></h2><a id="user-content-nomenclature" class="anchor" aria-label="永久链接：命名法" href="#nomenclature"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目 - 原材料在加工过程中用于制造最终产品的各个级别（例如布料、皮革）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文章 - 最终输出产品（例如鞋）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">生产计划 - 跟踪物品输出进度的机制。此进度是分批跟踪的。根据物品数量创建批次（例如计划生产 100 双鞋）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">流程 - 制造一件物品所涉及的不同级别（例如切割、模制）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">各方 - 各方可以是购买物品（原材料）、出售 Godowen 库存（物品）或参与物品间歇加工的任何实体（例如 X 方 - 我们从中购买布料；Y 方 - 进行切割以制作鞋子；Z方-从我们这里购买鞋子）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发出物品 - 将物品（原材料）转移给参与物品间歇加工的各方，并在加工中使用这些物品。 （例如，按照 100 只鞋的计划，向 X 方提供 10 m 布料用于切割）</font></font></li>
+</ul>
+<p dir="auto"><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">未完待续...</font></font></p>
+</article></div>
